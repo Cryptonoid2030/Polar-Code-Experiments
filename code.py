@@ -219,15 +219,23 @@ def plot_ber_rate_half(block_lengths=(2, 64, 256, 1024), p_values=None, p_design
 
 
 if __name__ == "__main__":
-    N = 8
-    K = 4
+    # N = 8
+    # K = 4
+
+    N = 1024
+    K = int(N/8) #roughly 50% code rate
+
+    p_crossover = 0.9 # choose a crossover probability for this
     # Arbitrarily choosing some indices for frozen bits (usually chosen via channel capacity analysis)
-    frozen_indices = [0, 1, 2, 4] 
+    # frozen_indices = [0, 1, 2, 4] 
+    frozen_indices = design_frozen_indices(N, K, p_crossover)
     
     polar = PolarCode(N, K, frozen_indices)
     
     # 1. Generate random info bits
-    info_bits = np.array([1, 0, 1, 1])
+    rng = np.random.default_rng()
+    info_bits = rng.integers(0, 2, size=K)
+    # info_bits = np.array([1, 0, 1, 1])
     print(f"Original Info Bits: {info_bits}")
     
     # 2. Encode
