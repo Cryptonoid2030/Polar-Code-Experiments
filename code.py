@@ -43,7 +43,7 @@ class PolarCode:
      return scl.decode(y_llr, self.frozen_indices, self.N, L)
 
 
-
+# demo usage for PolarCode class
 if __name__ == "__main__":
     from frozen import *
     from performance import *
@@ -54,10 +54,10 @@ if __name__ == "__main__":
     N = 1024
     K = int(N/8) #roughly 50% code rate
 
-    p_crossover = 0.4 # choose a crossover probability for this
+    p = 0.4 # choose a crossover probability for this
     # Arbitrarily choosing some indices for frozen bits (usually chosen via channel capacity analysis)
     # frozen_indices = [0, 1, 2, 4] 
-    frozen_indices = Bhattacharyya(N, K, p_crossover)
+    frozen_indices = Bhattacharyya(N, K, p)
     
     polar = PolarCode(N, K, frozen_indices)
     
