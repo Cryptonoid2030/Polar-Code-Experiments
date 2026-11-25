@@ -5,8 +5,7 @@ import numpy as np
 def Bhattacharyya(N, K, p_design):
     """
     Pick the N-K least reliable subchannels (Bhattacharyya bound) for a BSC
-    with crossover probability p_design. Use ONE fixed p_design for a whole
-    FER sweep so the code does not change from point to point.
+    with crossover probability p_design.
     """
     z = np.array([2.0 * np.sqrt(p_design * (1.0 - p_design))])
     while len(z) < N:
